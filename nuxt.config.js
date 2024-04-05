@@ -1,10 +1,14 @@
 
 export default {
-  mode: 'universal',
+  target: 'static',
+  ssr: true,
   /*
   ** Headers of the page
   */
   head: {
+    htmlAttrs: {
+      lang: 'uk-UA'
+    },
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
@@ -18,11 +22,13 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: {color: '#DA291C'},
   /*
   ** Global CSS
   */
   css: [
+    '@/assets/main.scss'
+
   ],
   /*
   ** Plugins to load before mounting the App
@@ -34,7 +40,6 @@ export default {
   */
   buildModules: [
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
-    '@nuxtjs/tailwindcss',
   ],
   /*
   ** Nuxt.js modules
@@ -44,7 +49,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv',
+    '@nuxtjs/dotenv'
   ],
   /*
   ** Axios module configuration
@@ -59,7 +64,13 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    postcss: {
+      postcssOptions: {
+        plugins: {
+          tailwindcss: {},
+          autoprefixer: {}
+        }
+      }
     }
   }
 }
